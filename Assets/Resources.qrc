@@ -1,0 +1,12 @@
+<RCC>
+    <qresource prefix="/Icons">
+        <file alias="home.svg">Icons/home.svg</file>
+        <file alias="ambient.svg">Icons/ambient.svg</file>
+        <file alias="hvac.svg">Icons/hvac.svg</file>
+        <file alias="tpms.svg">Icons/tpms.svg</file>
+        <file alias="camera.svg">Icons/camera.svg</file>
+        <file alias="music.svg">Icons/music.svg</file>
+        <file alias="settings.svg">Icons/settings.svg</file>
+
+    </qresource>
+</RCC>
