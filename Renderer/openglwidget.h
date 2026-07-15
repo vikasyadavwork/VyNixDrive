@@ -6,6 +6,8 @@
 #include <QOpenGLBuffer>
 #include <QOpenGLVertexArrayObject>
 #include "shader.h"
+#include "vertexbuffer.h"
+#include "vertexarray.h"
 
 class OpenGLWidget : public QOpenGLWidget,
                      protected QOpenGLFunctions
@@ -22,12 +24,7 @@ protected:
     void paintGL() override;
 
 private:
-    QOpenGLShaderProgram m_shaderProgram;
-
-    QOpenGLBuffer m_vbo{QOpenGLBuffer::VertexBuffer};
-
-    QOpenGLVertexArrayObject m_vao;
-private:
-
     Shader m_shader;
+    VertexBuffer m_vertexBuffer;
+    VertexArray m_vertexArray;
 };

@@ -21,6 +21,12 @@ void VertexBuffer::Destroy()
         m_buffer.destroy();
 }
 
+void VertexBuffer::Allocate(const void* data,
+                            int size)
+{
+    m_buffer.allocate(data, size);
+}
+
 void VertexBuffer::Bind()
 {
     m_buffer.bind();

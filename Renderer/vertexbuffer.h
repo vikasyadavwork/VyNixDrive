@@ -10,12 +10,13 @@ public:
     ~VertexBuffer();
 
     bool Create();
-
     void Destroy();
-
     void Bind();
-
     void Release();
+    void Allocate(
+        const void* data,
+        int size
+        );
 
     template<typename T>
     void Upload(const std::vector<T>& vertices)
