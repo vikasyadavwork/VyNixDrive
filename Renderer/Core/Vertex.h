@@ -1,14 +1,12 @@
-#pragma once
-
-struct Vertex
+struct Vec3
 {
-    // Position
     float x;
     float y;
     float z;
+};
 
-    // Color
-    float r;
-    float g;
-    float b;
+struct Vertex
+{
+    Vec3 Position;
+    Vec3 Color;
 };

@@ -42,6 +42,10 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         UI/Navigation/NavigationPage.h
         Assets/Resources.qrc
         Assets/Icons/ambient.svg Assets/Icons/camera.svg Assets/Icons/home.svg Assets/Icons/hvac.svg Assets/Icons/music.svg Assets/Icons/settings.svg Assets/Icons/tpms.svg
+        Renderer/elementbuffer.h Renderer/elementbuffer.cpp
+        Renderer/Math/Vec2.h
+        Renderer/Math/Vec3.h
+        Renderer/Math/Transform.h
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET VyNixDrive APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR

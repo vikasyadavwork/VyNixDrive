@@ -8,6 +8,8 @@
 #include "shader.h"
 #include "vertexbuffer.h"
 #include "vertexarray.h"
+#include "elementbuffer.h"
+#include "Math/Transform.h"
 
 class OpenGLWidget : public QOpenGLWidget,
                      protected QOpenGLFunctions
@@ -27,4 +29,8 @@ private:
     Shader m_shader;
     VertexBuffer m_vertexBuffer;
     VertexArray m_vertexArray;
+    ElementBuffer m_elementBuffer;
+
+private:
+    Transform m_transform;
 };

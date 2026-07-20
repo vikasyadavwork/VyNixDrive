@@ -24,19 +24,31 @@ void OpenGLWidget::initializeGL()
     }
 
     // Create triangle vertices
-    Vertex vertices[]
+    Vertex vertices[] =
         {
-            { -0.5f, -0.5f, 0.0f,   1.0f, 0.0f, 0.0f }, // Red
-            {  0.5f, -0.5f, 0.0f,   0.0f, 1.0f, 0.0f }, // Green
-            {  0.0f,  0.5f, 0.0f,   0.0f, 0.0f, 1.0f }  // Blue
+            {{-0.5f,-0.5f,0.0f}, {1,0,0}},
+            {{ 0.5f,-0.5f,0.0f}, {0,1,0}},
+            {{ 0.5f, 0.5f,0.0f}, {0,0,1}},
+            {{-0.5f, 0.5f,0.0f}, {1,1,0}}
         };
 
-    // Create GPU Vertex Buffer
+    unsigned int indices[] =
+        {
+            0,1,2,
+            2,3,0
+        };
+
+    m_vertexArray.Create();
+    m_vertexArray.Bind();
+
     m_vertexBuffer.Create();
     m_vertexBuffer.Bind();
     m_vertexBuffer.Allocate(vertices, sizeof(vertices));
 
-    // Describe vertex layout
+    m_elementBuffer.Create();
+    m_elementBuffer.Bind();
+    m_elementBuffer.Allocate(indices, sizeof(indices));
+
     VertexLayout layout;
 
     layout.AddAttribute(
@@ -44,19 +56,17 @@ void OpenGLWidget::initializeGL()
         3,
         GL_FLOAT,
         false,
-        offsetof(Vertex, x));
+        offsetof(Vertex, Position));
 
     layout.AddAttribute(
         1,
         3,
         GL_FLOAT,
         false,
-        offsetof(Vertex, r));
+        offsetof(Vertex, Color));
 
     layout.SetStride(sizeof(Vertex));
 
-    // Create Vertex Array
-    m_vertexArray.Create();
     m_vertexArray.AddBuffer(
         m_vertexBuffer,
         layout);
@@ -72,17 +82,40 @@ void OpenGLWidget::resizeGL(int width, int height)
 
 void OpenGLWidget::paintGL()
 {
+    QMatrix4x4 model;
+
+    model.translate(m_transform.Position);
+
+    model.rotate(
+        m_transform.Rotation.x(),
+        1,0,0);
+
+    model.rotate(
+        m_transform.Rotation.y(),
+        0,1,0);
+
+    model.rotate(
+        m_transform.Rotation.z(),
+        0,0,1);
+
+    model.scale(m_transform.Scale);
+
+     m_shader.Bind();
+
+    m_shader.Program().setUniformValue(
+        "uModel",
+        model);
+
     glClearColor(0.08f, 0.08f, 0.10f, 1.0f);
     glClear(GL_COLOR_BUFFER_BIT);
 
-    m_shader.Bind();
     m_vertexArray.Bind();
 
-    glDrawArrays(
+    glDrawElements(
         GL_TRIANGLES,
-        0,
-        3);
-
+        6,
+        GL_UNSIGNED_INT,
+        nullptr);
     m_vertexArray.Release();
     m_shader.Release();
 }
