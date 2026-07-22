@@ -7,11 +7,9 @@
 AmbientScreen::AmbientScreen(QWidget* parent)
     : Screen("Ambient", parent)
 {
-    auto* layout = new QVBoxLayout(this);
+    m_layout->setContentsMargins(0,0,0,0);
 
-    layout->setContentsMargins(0,0,0,0);
+    m_renderer = new OpenGLWidget();
 
-    m_renderer = new OpenGLWidget(this);
-
-    layout->addWidget(m_renderer);
+    m_layout->addWidget(m_renderer);
 }

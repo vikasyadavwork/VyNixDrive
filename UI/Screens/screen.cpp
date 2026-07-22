@@ -9,10 +9,6 @@ Screen::Screen(
     : QWidget(parent)
 {
     m_layout = new QVBoxLayout(this);
-
-    auto* label = new QLabel(title, this);
-
-    label->setAlignment(Qt::AlignCenter);
-
-    m_layout->addWidget(label);
+    m_layout->setContentsMargins(0,0,0,0);
+    m_layout->setSpacing(0);
 }

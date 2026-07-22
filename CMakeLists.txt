@@ -9,8 +9,8 @@ set(CMAKE_AUTORCC ON)
 set(CMAKE_CXX_STANDARD 20)
 set(CMAKE_CXX_STANDARD_REQUIRED ON)
 
-find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets OpenGLWidgets)
-find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets OpenGLWidgets)
+find_package(QT NAMES Qt6 Qt5 REQUIRED COMPONENTS Widgets OpenGLWidgets OpenGL)
+find_package(Qt${QT_VERSION_MAJOR} REQUIRED COMPONENTS Widgets OpenGLWidgets OpenGL)
 find_package(Qt6 REQUIRED COMPONENTS Svg)
 
 set(PROJECT_SOURCES
@@ -46,6 +46,8 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         Renderer/Math/Vec2.h
         Renderer/Math/Vec3.h
         Renderer/Math/Transform.h
+        Renderer/camera.h Renderer/camera.cpp
+        Renderer/renderer.h Renderer/renderer.cpp
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET VyNixDrive APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR
@@ -72,6 +74,7 @@ target_include_directories(VyNixDrive PRIVATE
 target_link_libraries(VyNixDrive PRIVATE
     Qt${QT_VERSION_MAJOR}::Widgets
     Qt${QT_VERSION_MAJOR}::OpenGLWidgets
+    Qt${QT_VERSION_MAJOR}::OpenGL
     Qt6::Svg
 )
 

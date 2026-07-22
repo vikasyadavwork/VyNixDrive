@@ -5,10 +5,10 @@
 #include <QOpenGLShaderProgram>
 #include <QOpenGLBuffer>
 #include <QOpenGLVertexArrayObject>
-#include "shader.h"
-#include "vertexbuffer.h"
-#include "vertexarray.h"
-#include "elementbuffer.h"
+#include <QTimer>
+#include <QElapsedTimer>
+#include "camera.h"
+#include "renderer.h"
 #include "Math/Transform.h"
 
 class OpenGLWidget : public QOpenGLWidget,
@@ -26,11 +26,14 @@ protected:
     void paintGL() override;
 
 private:
-    Shader m_shader;
-    VertexBuffer m_vertexBuffer;
-    VertexArray m_vertexArray;
-    ElementBuffer m_elementBuffer;
+    Camera m_camera;
+    Renderer m_renderer;
 
 private:
     Transform m_transform;
+
+    QTimer* m_timer = nullptr;
+    QElapsedTimer m_frameTimer;
+    float m_deltaTime = 0.0f;
+    void Update();
 };
