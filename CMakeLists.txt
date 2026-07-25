@@ -48,6 +48,9 @@ if(${QT_VERSION_MAJOR} GREATER_EQUAL 6)
         Renderer/Math/Transform.h
         Renderer/camera.h Renderer/camera.cpp
         Renderer/renderer.h Renderer/renderer.cpp
+        Renderer/mesh.h Renderer/mesh.cpp
+        Renderer/cubemesh.h Renderer/cubemesh.cpp
+        Renderer/texture.h Renderer/texture.cpp
     )
 # Define target properties for Android with Qt 6 as:
 #    set_property(TARGET VyNixDrive APPEND PROPERTY QT_ANDROID_PACKAGE_SOURCE_DIR

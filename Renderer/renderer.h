@@ -3,9 +3,9 @@
 #include "Math/Transform.h"
 #include "camera.h"
 #include "shader.h"
-#include "Core/Vertex.h"
 #include "vertexarray.h"
 #include "vertexbuffer.h"
+#include "cubemesh.h"
 #include "elementbuffer.h"
 
 class Renderer
@@ -21,6 +21,7 @@ public:
         int viewportHeight);
 
 private:
+    CubeMesh m_cube;
     Shader m_shader;
     VertexArray m_vertexArray;
     VertexBuffer m_vertexBuffer;
